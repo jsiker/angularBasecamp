@@ -1,0 +1,17 @@
+<h2>Your Damn Events</h2>
+
+<div>Event Name: <input ng-model="eventSummary" /></div>
+<div>Event Description: <input ng-model="eventDescription" /></div>
+<div>Event Start: <input ng-model="eventStarts" /></div>
+
+<button ng-click="newEvent();">Create New Event</button>
+<div ng-repeat="event in events track by $index">
+    <div>
+        <div>{{ event.summary }}</div>
+        <div>{{ event.description }}</div>
+        <div>{{ event.starts_at }}</div>
+    </div>
+</div>
+<br>
+<br>
+<a href="#/home">Go Home</a>

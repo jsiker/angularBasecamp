@@ -1,0 +1,43 @@
+<div style="float:left; width:40%">
+    <h1>{{ project.name }}</h1>
+    <div>Description: {{ project.description }}</div>
+    <div>Created At Exactly: {{ project.created_at }}</div>
+    <div>Created By: {{ project.creator.name }}</div>
+    <div>Amount of Shit We Gotta Do: {{ project.todolists.remaining_count }} things</div>
+    <div>Shit We Done Did: {{ project.todolists.completed_count }} things</div>
+    <div><a href="{{ project.todolists.app_url }}">Place To Check All The Shit Out At</a></div>
+
+
+    <h2>Edit Project</h2>
+    <div>Project Name: <input ng-model="projectName" /></div>
+    <div>Project Description: <input ng-model="projectDescription" /></div>
+
+    <button ng-click="editProject();">Edit Existing Project</button>
+
+    <h2>Delete This Foo</h2>
+
+    <button ng-click="deleteProject();">Finish Him!</button>
+</div>
+<div style="float:left">
+    <h2>Make A Damn Event</h2>
+
+    <div>Event Summary: <input ng-model="eventSummary" /></div>
+    <div>Event Description: <input ng-model="eventDescription" /></div>
+    <div>Event Starts: <input ng-model="eventStarts" /></div>
+
+    <button ng-click="newEvent();">Create New Event</button>
+
+    <!-- <div ng-repeat="event in calendar track by $index">
+        <div>
+            <h2>Your Damn Events</h2>
+            <div>Summary: {{ event.summary }}</div>
+            <div>Description: {{ event.description }}</div>
+            <div>Starts At: {{ event.starts_at }}</div>
+        </div>
+    </div> -->
+    <br>
+    <br>
+    <a href="#/home">Go Home</a>
+    <br>
+    <a href="#/projects/{{ project.id }}/calendar_events/{{ event.id }}">Events</a>
+</div>

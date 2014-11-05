@@ -1,0 +1,14 @@
+<h1>Your Damn Projects</h1>
+
+<div>Project Name: <input ng-model="projectName" /></div>
+<div>Project Description: <input ng-model="projectDescription" /></div>
+
+<button ng-click="newProject();">Create New Project</button>
+
+<div ng-repeat="project in projects">
+    <div>
+        <a href="#/projects/{{ project.id }}" >{{ project.name }}</a>
+    </div>
+</div>
+
+<br>

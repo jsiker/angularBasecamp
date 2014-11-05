@@ -14,6 +14,8 @@
 
     <!------- Controllers ------->
     <script src="{% static "js/controllers/exampleController.js" %}"></script>
+    <script src="{% static "js/controllers/dynamicController.js" %}"></script>
+
 </head>
 <body>
     <div class="outsideAngular">
@@ -22,7 +24,14 @@
     <div ng-app="exampleApp">
         <div class="outsideView">
             Outside of current view, but still inside of our Angular app
+
+            <ul>
+                <li><a href="#/example">Chuck Norris View</a></li>
+                <li><a href="#/dynamic">Dynamic View</a></li>
+            </ul>
         </div>
+
+        <!-- ng-views -->
         <div class="view" ng-view></div>
     </div>
 </body>
