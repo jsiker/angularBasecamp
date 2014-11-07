@@ -1,6 +1,4 @@
-function projectController($scope, $http, $routeParams) { //routeParams gives us access to project ID
-
-    $scope.calendar = []; // need an empty calendar object to make events
+function projectController($scope, $http, $routeParams, $location) { //routeParams gives us access to project ID
 
     var projectId = $routeParams.id;
 
@@ -12,15 +10,16 @@ function projectController($scope, $http, $routeParams) { //routeParams gives us
             console.log("didn't work");
         });
 
-    $http.get('/proxy/projects/' + projectId + '.json').
+    $http.get('/proxy/projects/' + projectId + '/topics.json').
     success(function(data){
         $scope.topics = data;
+            console.log(data)
     }).
         error(function(data) {
         console.log("didn't work");
     });
 
-    $http.get('/proxy/projects/' + projectId + '.json').
+    $http.get('/proxy/projects/' + projectId + '/calendar_events.json').
     success(function(data){
         $scope.calendar = data;
     }).
@@ -62,24 +61,71 @@ function projectController($scope, $http, $routeParams) { //routeParams gives us
         });
     };
 
+
     $scope.newEvent = function() { // put new event func in project controller
         console.log('click');
-        $http.post('proxy/projects/' + projectId + '/calendar_events/.json',
+        console.log($scope.calendar);// push data into empty calendar array; WON'T PUSH!!!!!!!
+        $http.post('proxy/projects/' + projectId + '/calendar_events.json',
         {
-           'summary': $scope.eventSummary,
-           'description': $scope.eventDescription,
-           'starts': $scope.eventStarts,
-           'all_day': true
+           "summary": $scope.eventSummary,
+           "description": $scope.eventDescription,
+           "all_day": true,
+           "starts_at": $scope.eventStarts
         }).
-        success(function (data) {
+        success(function (xxx) {
             console.log('new event');
-            $scope.calendar.push(data); // push data into empty calendar array; WON'T PUSH!!!!!!!
+            $scope.calendar.push(xxx);
+            console.log($scope.calendar);// push data into empty calendar array; WON'T PUSH!!!!!!!
 //           $scope.eventDescription = '';
 //           $scope.eventSummary = '';
 //           $scope.eventStarts = '';
         }).
-        error(function (error) {
-            console.log(error)
+        error(function (data) {
+            console.log('didn\'t work')
         });
    };
+    $scope.hasAttachment = function(filterData){
+     // If the checkbox is checked (when checked, it's value is true)
+     if ($scope.attachmentBoolean) {
+        // Only return topics that have attachments
+        return filterData.attachments > 0;
+     // else return true for all topics
+        } else {
+        return true
+         }
+     };
+    $scope.linkToSearch = function() {
+    var link = $location.absUrl() + '?' + $scope.searchText;
+    window.prompt("Copy to clipboard: Ctrl+C, Enter", link);
+    };
+    projects
+    //////////////// Peter's example //////////////////
+//        $scope.newCalendar = function() {
+//        var data = {
+//            "name": $scope.calendarName
+//        };
+//        $http.post('/proxy/calendars.json', data).
+//            success(function(){
+//                console.log("worked");
+//            }).error(function(error){
+//                console.log('fail');
+//            })
+//
+//    };
+//    $scope.projects = ProjectFactory.projectList;
+//    if (ProjectFactory.projectList.length > 0) {
+//    $scope.projects = ProjectFactory.projectList;
+//}
+//    else {
+//    $http.get('/proxy/projects.json')
+//        .success(function(response) {
+//            console.log(response);
+//            $scope.projects = response;
+//            ProjectFactory.projectList = $scope.projects;
+//    }).error(function(error) {
+//            console.log(error);
+//        });
+//}
+//    $scope.projects = ProjectFactory.deleteProject(); //Simply call function?
+//    $scope.projects = ProjectFactory.editProject(); //Simply call function?
 }

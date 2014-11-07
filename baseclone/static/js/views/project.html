@@ -1,3 +1,4 @@
+<div welcome></div>
 <div style="float:left; width:40%">
     <h1>{{ project.name }}</h1>
     <div>Description: {{ project.description }}</div>
@@ -16,25 +17,44 @@
 
     <h2>Delete This Foo</h2>
 
-    <button ng-click="deleteProject();">Finish Him!</button>
+    <button type='delete' ng-click="deleteProject();">Finish Him!</button>
 </div>
-<div style="float:left">
+
+
+
     <h2>Make A Damn Event</h2>
 
     <div>Event Summary: <input ng-model="eventSummary" /></div>
     <div>Event Description: <input ng-model="eventDescription" /></div>
     <div>Event Starts: <input ng-model="eventStarts" /></div>
 
-    <button ng-click="newEvent();">Create New Event</button>
+    <button type='submit' ng-click="newEvent();">Create New Event</button>
 
-    <!-- <div ng-repeat="event in calendar track by $index">
+    <h2>Your Damn Events</h2>
+     <div ng-repeat="event in calendar track by $index">
         <div>
-            <h2>Your Damn Events</h2>
+
             <div>Summary: {{ event.summary }}</div>
             <div>Description: {{ event.description }}</div>
             <div>Starts At: {{ event.starts_at }}</div>
         </div>
-    </div> -->
+    </div>
+    <h3>Topics</h3>
+    <bc-searchbar></bc-searchbar>
+<!--    <input ng-model="searchText" /> -->
+    <p>Only with attachments: <input type="checkbox" ng-model="attachmentBoolean" /></p>
+
+    <div ng-repeat="topic in topics | filter: searchText | filter: hasAttachment | dateTypeFilter:'2014-11-06' track by $index">
+
+        <div>Topic ID: {{ topic.id }}</div>
+        <div>Title: {{ topic.title }}</div>
+        <div>Created at: {{ topic.created_at }}</div>
+        <div>A Tid Bit For You: {{ topic.excerpt }}</div>
+        <button ng-click="linkToSearch();">Copy To Clipboard</button>
+
+        <br>
+    </div>
+
     <br>
     <br>
     <a href="#/home">Go Home</a>

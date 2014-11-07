@@ -1,9 +1,12 @@
+<div welcome>     </div>
 <h1>Your Damn Projects</h1>
 
 <div>Project Name: <input ng-model="projectName" /></div>
 <div>Project Description: <input ng-model="projectDescription" /></div>
 
 <button ng-click="newProject();">Create New Project</button>
+
+{#<button ng-click="editProject();">Edit Project</button>#}
 
 <div ng-repeat="project in projects">
     <div>

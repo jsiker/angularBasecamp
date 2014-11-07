@@ -1,5 +1,7 @@
 /////////////// CALENDAR EVENTS ////////////////////////////
 function eventController($scope, $http, $routeParams) { //routeParams gives us access to project ID
+    $scope.projectid = $routeParams.id; // why scope and var project?
+
     var projectId = $routeParams.id;
     var eventId = $routeParams.whatever;
 

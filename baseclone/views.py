@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from django.http import HttpResponse
+from django.http import HttpResponse, StreamingHttpResponse
 from django.views.decorators.csrf import csrf_exempt
 import requests
 
@@ -25,4 +25,4 @@ def proxy_to(request, path, target_url):
     elif request.method == 'DELETE':
         proxied_response = requests.delete(url, data=request.body, headers=headers)
 
-    return HttpResponse(proxied_response)
+    return StreamingHttpResponse(proxied_response)

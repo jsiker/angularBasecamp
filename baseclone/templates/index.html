@@ -10,18 +10,33 @@
     <script src="{% static "js/vendors/angular/angular.js" %}"></script>
     <script src="{% static "js/vendors/angular/angular-resource.js" %}"></script>
     <script src="{% static "js/vendors/angular/angular-route.js" %}"></script>
-
+    <script src="{% static "js/vendors/angular/angular-sanitize.js" %}"></script>
 
     <!------- Bootstrap ------->
     <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
 
     <!-- JavaScript -->
-    <script src="{% static "js/app.js" %}"></script>
+    <script src="{% static "js/app.js" %}"></script> <!-- JS file structure: Angular stuff -> app.js -> controllers, factories -->
 
     <!------- Controllers ------->
     <script src="{% static "js/controllers/homeController.js" %}"></script>
     <script src="{% static "js/controllers/projectController.js" %}"></script>
     <script src="{% static "js/controllers/eventController.js" %}"></script>
+    <script src="{% static "js/controllers/discussionController.js" %}"></script>
+
+    <!-- Filters -->
+    <script src="{% static "js/filters/topicType.js" %}"></script>
+    <script src="{% static "js/filters/dateType.js" %}"></script>
+
+    <!-- Factories -->
+    <script src="{% static "js/factories/projectFactory.js" %}"></script>
+    <script src="{% static "js/factories/infoFactory.js %}" %}"></script>
+
+    <!-- Directives -->
+    <script src="{% static "js/directives/buttonDirective.js" %}"></script>
+    <script src="{% static "js/directives/welcomeDirective.js" %}"></script>
+    <script src="{% static "js/directives/searchbarDirective.js" %}"></script>
+    <script src="{% static "js/directives/infoPanelDirective.js" %}"></script>
 
     <!-- CSS -->
     <link rel="stylesheet" href="{% static "css/index.css" %}">

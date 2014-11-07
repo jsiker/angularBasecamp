@@ -1,4 +1,4 @@
-function homeController($scope, $http){
+function homeController($scope, $http, ProjectFactory){
     $http.get('/proxy/projects.json').
     success(function(projectsResponse) {
         $scope.projects = projectsResponse;
@@ -21,5 +21,19 @@ function homeController($scope, $http){
                 console.log(error)
 
         });
-    }
+    };
+    ProjectFactory.getProjects(function(response) {
+        $scope.projects = response;
+        ProjectFactory.projectList = $scope.projects;
+    });
+
+    ProjectFactory.deleteProject(function(response) {
+        $scope.projects = response;
+        ProjectFactory.projectList = $scope.projects;
+    });
+
+
+
+//    $scope.projects = ProjectFactory.deleteProject(); //Simply call function?
+//    $scope.projects = ProjectFactory.editProject(); //Simply call function?
 }
